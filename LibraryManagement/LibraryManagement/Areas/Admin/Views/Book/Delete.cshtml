@@ -1,0 +1,74 @@
+﻿@model LibraryManagement.Models.ViewModel.BookViewModel
+@using LibraryManagement.Extensions
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<br />
+<h2 class="text-info">Delete Book </h2>
+
+<form method="post">
+    <div class="p-4 border rounded row">
+        <input hidden asp-for="Books.BookID" />
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Books.BookName"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Books.BookName" readonly class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Authors"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Books.Author.AuthorName" readonly class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Categories"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Books.Category.CategoryName" readonly class="form-control" />
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Books.PublicationDate"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Books.PublicationDate" readonly value="" type="text" id="datepicker" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Books.Note"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Books.Note" readonly class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="col-1">
+
+        </div>
+        <div class="col-3">
+            <img src="@Model.Books.BookImage" width="50%" style="border-radius:5px; border:1px solid #bbb9b9;" />
+        </div>
+
+
+        <br />
+        <div class="form-group">
+            <input type="submit" class="btn btn-danger" value="Delete" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </div>
+</form>

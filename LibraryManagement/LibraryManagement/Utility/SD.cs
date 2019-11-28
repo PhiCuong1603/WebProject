@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace LibraryManagement.Utility
+{
+    public class SD
+    {
+        public const string DeafaultBookImage = "default_img.png";
+        public const string ImageFolder = @"images\BookImage";
+
+        public const string AdminEndUser = "Admin";
+        public const string SuperAdminEndUser = "Super Admin";
+    }
+}

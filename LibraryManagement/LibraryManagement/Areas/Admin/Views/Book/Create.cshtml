@@ -1,0 +1,102 @@
+﻿@model LibraryManagement.Models.ViewModel.BookViewModel
+@using LibraryManagement.Extensions
+@{
+    ViewData["Title"] = "Create";
+}
+
+<br />
+<h2 class="text-info">Add Book</h2>
+<form method="post" enctype="multipart/form-data">
+    <div class="p-4 border rounded">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Books.BookName"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Books.BookName" class="form-control" />
+
+            </div>
+            <span asp-validation-for="Books.BookName" class="text-danger"></span>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Authors"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="@Model.Books.AuthorID" asp-items="Model.Authors.ToSelectListAuthor(Model.Books.AuthorID)" class="form-control"></select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Categories"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="@Model.Books.CategoryID" asp-items="Model.Categories.ToSelectListCategory(Model.Books.CategoryID)" class="form-control"></select>
+
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Books.PublicationDate"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Books.PublicationDate" value="" type="text" id="datepicker" class="form-control" />
+
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Books.Note"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Books.Note" class="form-control" />
+
+            </div>
+            <span asp-validation-for="Books.Note" class="text-danger"></span>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Books.BookImage"></label>
+            </div>
+            <div class="col-5">
+                <input type="file" name="files" class="form-control" />
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Create" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <script>
+//$('.timepicker').timepicker({
+//            timeFormat: 'h:mm p',
+//            interval: 30,
+//            minTime: '10',
+//            maxTime: '3:00pm',
+//            startTime: '10:00',
+//            dynamic: true,
+//            dropdown: true,
+//            scrollbar: true
+//        });
+
+        $(function () {
+            $("#datepicker").datepicker({
+                //minDate: +1, maxDate: "+3M"
+            });
+        });</script>
+}   
