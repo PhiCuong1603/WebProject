@@ -4,16 +4,14 @@ using LibraryManagement.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace LibraryManagement.Data.Migrations
+namespace LibraryManagement.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191128031908_updateModel4")]
-    partial class updateModel4
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,9 +45,6 @@ namespace LibraryManagement.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
                     b.Property<int>("AuthorID")
                         .HasColumnType("int");
 
@@ -65,8 +60,8 @@ namespace LibraryManagement.Data.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Year")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("PublicationDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("BookID");
 
@@ -84,10 +79,17 @@ namespace LibraryManagement.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("BorrowedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("BookID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProcessID")
+                        .HasColumnType("int");
 
                     b.HasKey("BorrowedID");
+
+                    b.HasIndex("BookID");
+
+                    b.HasIndex("ProcessID");
 
                     b.ToTable("Borrowed");
                 });
@@ -114,26 +116,22 @@ namespace LibraryManagement.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BookID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BorrowedID")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("BorrowedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("Complete")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("CompleteDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("ReaderEmail")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Note")
+                    b.Property<string>("ReaderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReaderPhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProcessID");
-
-                    b.HasIndex("BookID");
-
-                    b.HasIndex("BorrowedID");
 
                     b.ToTable("Process");
                 });
@@ -383,17 +381,17 @@ namespace LibraryManagement.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("LibraryManagement.Models.Process", b =>
+            modelBuilder.Entity("LibraryManagement.Models.Borrowed", b =>
                 {
-                    b.HasOne("LibraryManagement.Models.Book", "Book")
+                    b.HasOne("LibraryManagement.Models.Book", "Books")
                         .WithMany()
                         .HasForeignKey("BookID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LibraryManagement.Models.Borrowed", "Borrowed")
+                    b.HasOne("LibraryManagement.Models.Process", "Process")
                         .WithMany()
-                        .HasForeignKey("BorrowedID")
+                        .HasForeignKey("ProcessID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

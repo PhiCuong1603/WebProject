@@ -12,7 +12,14 @@ namespace LibraryManagement.Models
         [Key]
         public int BorrowedID { get; set; }
 
-        public DateTime BorrowedDate { get; set; }
+        [ForeignKey("Process")]
+        public int ProcessID { get; set; }
+        public virtual Process Process { get; set; }
+
+        [ForeignKey("Book")]
+        public int BookID { get; set; }
+        public virtual Book Books { get; set; }
+       
        
         
     }

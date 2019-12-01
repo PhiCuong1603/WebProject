@@ -28,17 +28,6 @@ namespace LibraryManagement.Extensions
                        Value = item.GetPropertyValue("CategoryID"),
                        Selected = item.GetPropertyValue("CategoryID").Equals(selectedValue.ToString())
                    };
-        }
-
-        public static IEnumerable<SelectListItem> ToSelectListProducer<T>(this IEnumerable<T> items, int selectedValue)
-        {
-            return from item in items
-                   select new SelectListItem
-                   {
-                       Text = item.GetPropertyValue("ProducerName"),
-                       Value = item.GetPropertyValue("ProducerID"),
-                       Selected = item.GetPropertyValue("ProducerID").Equals(selectedValue.ToString())
-                   };
-        }
+        }       
     }
 }

@@ -5,6 +5,19 @@
     <UserSecretsId>aspnet-LibraryManagement-DFBAE31F-7859-46D7-B04E-0532C696255B</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191130084310_addNewModel.cs" />
+    <Compile Remove="Data\Migrations\20191130084310_addNewModel.Designer.cs" />
+    <Compile Remove="Migrations\20191130084721_AddModel.cs" />
+    <Compile Remove="Migrations\20191130084721_AddModel.Designer.cs" />
+    <Compile Remove="Migrations\20191130093650_addModel.cs" />
+    <Compile Remove="Migrations\20191130093650_addModel.Designer.cs" />
+    <Compile Remove="Migrations\20191201013254_addModelToDatabase.cs" />
+    <Compile Remove="Migrations\20191201013254_addModelToDatabase.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.0" />
@@ -19,6 +32,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\images\BookImage\" />
   </ItemGroup>
 

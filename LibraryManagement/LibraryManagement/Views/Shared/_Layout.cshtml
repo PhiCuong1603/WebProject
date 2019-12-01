@@ -1,15 +1,22 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@using LibraryManagement.Extensions
+@using LibraryManagement.Utility
+@using LibraryManagement.Models.ViewModel
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewData["Title"] Library </title>
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="stylesheet" href="~/css/jquery-ui.css"/>
-        <link rel="stylesheet" href="~/css/jquery.timepicker.css"/>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Library </title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/jquery-ui.css" />
+    <link rel="stylesheet" href="~/css/jquery.timepicker.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
 
 <body>
@@ -35,13 +42,59 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-                        </li>                       
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Reader" asp-action="Index">Reader</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">AdminUsers</a>
                         </li>
+
+                        @*@if (User.IsInRole(SD.SuperAdminEndUser))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Merchants" asp-action="Index">Merchant</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Products" asp-action="Index">Product</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Customers" asp-action="Index">Customer</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Admin" asp-controller="StoreImport" asp-action="Index">Import</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">Admin User</a>
+            </li>
+        }
+        @if (User.IsInRole(SD.SuperAdminEndUser) || User.IsInRole(SD.AdminEndUser))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Orders" asp-action="Index">Order</a>
+            </li>
+        }*@
+                        @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssBorrowedCart") != null)
+                        {
+                            <li style="color:white">
+                                <a asp-area="Customer" asp-controller="BorrowedCart" asp-action="Index" class="nav-link">
+                                    <i class="fas fa-shopping-cart"></i> &nbsp;
+                                    @{
+                                        var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssBorrowedCart").Count;
+                                    }
+                                    (@count)
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li style="color:white">
+                                <a asp-area="Customer" asp-controller="BorrowedCart" asp-action="Index" class="nav-link">
+                                    <i class="fas fa-shopping-cart"></i> &nbsp;
+                                    (0)
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

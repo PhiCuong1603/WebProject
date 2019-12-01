@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace LibraryManagement.Data.Migrations
+namespace LibraryManagement.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class AddModelToDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,7 +39,9 @@ namespace LibraryManagement.Data.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -48,11 +49,69 @@ namespace LibraryManagement.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Author",
+                columns: table => new
+                {
+                    AuthorID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AuthorName = table.Column<string>(nullable: false),
+                    Note = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Author", x => x.AuthorID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Category",
+                columns: table => new
+                {
+                    CategoryID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Category", x => x.CategoryID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Process",
+                columns: table => new
+                {
+                    ProcessID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BorrowedDate = table.Column<DateTime>(nullable: false),
+                    ReaderName = table.Column<string>(nullable: true),
+                    ReaderPhoneNumber = table.Column<string>(nullable: true),
+                    ReaderEmail = table.Column<string>(nullable: true),
+                    Complete = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Process", x => x.ProcessID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reader",
+                columns: table => new
+                {
+                    ReaderID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReaderName = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reader", x => x.ReaderID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -73,7 +132,7 @@ namespace LibraryManagement.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -93,8 +152,8 @@ namespace LibraryManagement.Data.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: false)
                 },
@@ -138,8 +197,8 @@ namespace LibraryManagement.Data.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -150,6 +209,62 @@ namespace LibraryManagement.Data.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Book",
+                columns: table => new
+                {
+                    BookID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookName = table.Column<string>(nullable: true),
+                    BookImage = table.Column<string>(nullable: true),
+                    PublicationDate = table.Column<DateTime>(nullable: false),
+                    Note = table.Column<string>(nullable: true),
+                    AuthorID = table.Column<int>(nullable: false),
+                    CategoryID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Book", x => x.BookID);
+                    table.ForeignKey(
+                        name: "FK_Book_Author_AuthorID",
+                        column: x => x.AuthorID,
+                        principalTable: "Author",
+                        principalColumn: "AuthorID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Book_Category_CategoryID",
+                        column: x => x.CategoryID,
+                        principalTable: "Category",
+                        principalColumn: "CategoryID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Borrowed",
+                columns: table => new
+                {
+                    BorrowedID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProcessID = table.Column<int>(nullable: false),
+                    BookID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Borrowed", x => x.BorrowedID);
+                    table.ForeignKey(
+                        name: "FK_Borrowed_Book_BookID",
+                        column: x => x.BookID,
+                        principalTable: "Book",
+                        principalColumn: "BookID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Borrowed_Process_ProcessID",
+                        column: x => x.ProcessID,
+                        principalTable: "Process",
+                        principalColumn: "ProcessID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -191,6 +306,26 @@ namespace LibraryManagement.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Book_AuthorID",
+                table: "Book",
+                column: "AuthorID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Book_CategoryID",
+                table: "Book",
+                column: "CategoryID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Borrowed_BookID",
+                table: "Borrowed",
+                column: "BookID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Borrowed_ProcessID",
+                table: "Borrowed",
+                column: "ProcessID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,10 +346,28 @@ namespace LibraryManagement.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Borrowed");
+
+            migrationBuilder.DropTable(
+                name: "Reader");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Book");
+
+            migrationBuilder.DropTable(
+                name: "Process");
+
+            migrationBuilder.DropTable(
+                name: "Author");
+
+            migrationBuilder.DropTable(
+                name: "Category");
         }
     }
 }

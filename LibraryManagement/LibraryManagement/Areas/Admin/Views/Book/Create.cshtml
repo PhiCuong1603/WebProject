@@ -6,6 +6,7 @@
 
 <br />
 <h2 class="text-info">Add Book</h2>
+
 <form method="post" enctype="multipart/form-data">
     <div class="p-4 border rounded">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -82,21 +83,22 @@
 </form>
 
 @section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
-//$('.timepicker').timepicker({
-//            timeFormat: 'h:mm p',
-//            interval: 30,
-//            minTime: '10',
-//            maxTime: '3:00pm',
-//            startTime: '10:00',
-//            dynamic: true,
-//            dropdown: true,
-//            scrollbar: true
-//        });
+        //$('.timepicker').timepicker({
+        //            timeFormat: 'h:mm p',
+        //            interval: 30,
+        //            minTime: '10',
+        //            maxTime: '3:00pm',
+        //            startTime: '10:00',
+        //            dynamic: true,
+        //            dropdown: true,
+        //            scrollbar: true
+        //        });
 
         $(function () {
             $("#datepicker").datepicker({
-                //minDate: +1, maxDate: "+3M"
+                /*minDate: +1, */maxDate: "+3M"
             });
         });</script>
-}   
+}

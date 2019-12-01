@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using LibraryManagement.Models;
 using LibraryManagement.Data;
 using Microsoft.EntityFrameworkCore;
+using LibraryManagement.Extensions;
 
 namespace LibraryManagement.Controllers
 {
@@ -32,6 +33,7 @@ namespace LibraryManagement.Controllers
         public async Task<IActionResult> Index()
         {
             var BookList = await _db.Book.Include(m => m.Author).Include(m => m.Category).ToListAsync();
+
             return View(BookList);
         }
 
@@ -42,14 +44,38 @@ namespace LibraryManagement.Controllers
             return View(book);
         }
 
-        //[HttpPost, ActionName("Details")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Details(int id)
-        //{
-           
-        //    return RedirectToAction("Index", "Home", new { area = "Customer" });
+        [HttpPost, ActionName("Details")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DetailsPost(int id)
+        {
+            List<int> lstBorrowedCart = HttpContext.Session.Get<List<int>>("ssBorrowedgCart");
+            if (lstBorrowedCart == null)
+            {
 
-        //}
+                lstBorrowedCart = new List<int>();
+            }
+            lstBorrowedCart.Add(id);
+            HttpContext.Session.Set("ssBorrowedCart", lstBorrowedCart);
+
+            return RedirectToAction("Index", "Home", new { area = "Customer" });
+
+        }
+
+        public IActionResult Remove(int id)
+        {
+            List<int> lstBorrowedCart = HttpContext.Session.Get<List<int>>("ssBorrowedCart");
+            if (lstBorrowedCart.Count > 0)
+            {
+                if (lstBorrowedCart.Contains(id))
+                {
+                    lstBorrowedCart.Remove(id);
+                }
+            }
+
+            HttpContext.Session.Set("ssBorrowedCart", lstBorrowedCart);
+
+            return RedirectToAction(nameof(Index));
+        }
 
 
 

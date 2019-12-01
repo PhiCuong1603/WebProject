@@ -12,15 +12,25 @@ namespace LibraryManagement.Models
         [Key]
         public int ProcessID { get; set; }
 
-        [ForeignKey("Borrowed")]
-        public int BorrowedID { get; set; }
-        public Borrowed Borrowed { get; set; }
-        [ForeignKey("Book")]
-        public int BookID { get; set; }
-        public Book Book { get; set; }
+        public DateTime BorrowedDate { get; set; }
+        [NotMapped]
+        public DateTime BorrowedTime { get; set; }
+
+        public string ReaderName { get; set; }
+        public string ReaderPhoneNumber { get; set; }
+        public string ReaderEmail { get; set; }
+
         public bool Complete { get; set; }
 
-        public DateTime CompleteDate { get; set; }
-        public string Note { get; set; }
+      
+        //public string LibrarianID { get; set; }
+
+        //[ForeignKey("LibrarianID")]
+        //public virtual ApplicationUser Librarian { get; set; }
+
+        //[ForeignKey("Reader")]
+        //public int ReaderID { get; set; }       
+        //public ICollection<Borrowed> Borrowed { get; set; }
+       
     }
 }

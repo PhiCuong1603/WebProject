@@ -1,99 +1,125 @@
 ﻿@model LibraryManagement.Models.Book
 @using LibraryManagement.Extensions
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+
 @{
     ViewData["Title"] = "Detail";
 }
 
 <br />
 <h2 class="text-info">Book Detail </h2>
-<div class="p-4 border rounded row">   
-    <div class="col-8">
-        <div class="form-group row">
-            <div class="col-4">
-                <label asp-for="BookName"></label>
+<form method="post">
+    <div class="p-4 border rounded row">
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="BookName"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="BookName" readonly class="form-control" />
+                </div>
             </div>
-            <div class="col-8">
-                <input asp-for="BookName" readonly class="form-control" />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Author"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Author.AuthorName" readonly class="form-control" />
+                </div>
             </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Category"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Category.CategoryName" readonly class="form-control" />
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="PublicationDate"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="PublicationDate" type="text" id="datepicker" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Note"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Note" readonly class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+
+                </div>
+                <div class="col-8">
+                    @{
+                        bool isInBag = false;
+                        List<int> lstCart = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssBorrowedCart");
+                        if (lstCart != null && lstCart.Contains(Model.BookID))
+                        {
+                            isInBag = true;
+
+                        }
+                    }
+
+                    @if (isInBag)
+                    {
+                        <button type="submit" value="Remove From Bag" asp-action="remove" asp-route-id="@Model.BookID" class="btn btn-danger form-control">Remove From Bag</button>
+
+                    }
+                    else
+                    {
+                        <button type="submit" value="Add to Bag" asp-route-id="@Model.BookID" class="btn btn-primary form-control">Add To Bag</button>
+                    }
+                </div>
+            </div>
+
+        </div>
+        <div class="col-1">
+
+        </div>
+        <div class="col-3">
+            <img src="@Model.BookImage" width="100%" style="border-radius:5px; border:1px solid #bbb9b9;" />
         </div>
 
-        <div class="form-group row">
-            <div class="col-4">
-                <label asp-for="Author"></label>
-            </div>
-            <div class="col-8">
-                <input asp-for="Author.AuthorName" readonly class="form-control" />
-            </div>
+
+        <br />
+        <div class="form-group">
+            <input hidden asp-for="BookID" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
         </div>
-
-        <div class="form-group row">
-            <div class="col-4">
-                <label asp-for="Category"></label>
-            </div>
-            <div class="col-8">
-                <input asp-for="Category.CategoryName" readonly class="form-control" />
-            </div>
-        </div>
-
-
-        <div class="form-group row">
-            <div class="col-4">
-                <label asp-for="PublicationDate"></label>
-            </div>
-            <div class="col-8">
-                <input asp-for="PublicationDate" type="text" id="datepicker" class="form-control" readonly />
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-4">
-                <label asp-for="Note"></label>
-            </div>
-            <div class="col-8">
-                <input asp-for="Note" readonly class="form-control" />
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-4">
-
-            </div>
-            <div class="col-8">
-                @*@if (isInBag)
-        {
-            <button type="submit" value="Remove From Bag" asp-action="remove" asp-route-id="@Model.ID" class="btn btn-danger form-control">Remove From Bag</button>
-
-        }
-        else
-        {
-            @if (@Model.Available)
-            {
-                <button type="submit" value="Add to Bag" asp-route-id="@Model.ID" class="btn btn-primary form-control">Add To Bag</button>
-            }
-            else
-            {
-                <button type="submit" value="Add to Bag" disabled class="btn btn-block form-control"> Add to Bag </button>
-
-            }
-
-        }*@
-
-                <button type="submit" value="Add to Bag" asp-route-id="@Model.BookID" class="btn btn-primary form-control">Add To Bag</button>
-            </div>
-        </div>
-
     </div>
-    <div class="col-1">
+</form>
 
-    </div>
-    <div class="col-3">
-        <img src="@Model.BookImage" width="50%" style="border-radius:5px; border:1px solid #bbb9b9;" />
-    </div>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        //$('.timepicker').timepicker({
+        //            timeFormat: 'h:mm p',
+        //            interval: 30,
+        //            minTime: '10',
+        //            maxTime: '3:00pm',
+        //            startTime: '10:00',
+        //            dynamic: true,
+        //            dropdown: true,
+        //            scrollbar: true
+        //        });
 
-
-    <br />
-    <div class="form-group">
-        <input hidden asp-for="BookID" />
-        <a asp-action="Index" class="btn btn-success">Back to List</a>
-    </div>
-</div>
+        $(function () {
+            $("#datepicker").datepicker({
+                /*minDate: +1, */maxDate: "+3M"
+            });
+        });</script>
+}

@@ -39,11 +39,8 @@ namespace LibraryManagement
             services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddSession(options =>
             {
-                // Set a short timeout for easy testing.
-                options.IdleTimeout = TimeSpan.FromSeconds(30);
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.Cookie.HttpOnly = true;
-                // Make the session cookie essential
-                options.Cookie.IsEssential = true;
             });
         }
 
@@ -68,7 +65,7 @@ namespace LibraryManagement
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
