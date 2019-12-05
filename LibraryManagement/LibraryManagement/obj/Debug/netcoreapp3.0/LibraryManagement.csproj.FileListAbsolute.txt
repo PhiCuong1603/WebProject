@@ -197,3 +197,10 @@ F:\Lập trình web\Project\LibraryManagement\LibraryManagement\obj\Debug\netcor
 F:\Lập trình web\Project\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Areas\Admin\Views\AdminUsers\Delete.cshtml.g.cs
 F:\Lập trình web\Project\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Areas\Customer\Views\Home\Details.cshtml.g.cs
 F:\Lập trình web\Project\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Areas\Customer\Views\BorrowedCart\Index.cshtml.g.cs
+F:\Lập trình web\Project\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_BorrowedReaderDetails.cshtml.g.cs
+F:\Lập trình web\Project\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Areas\Customer\Views\BorrowedCart\ProcessComplete.cshtml.g.cs
+F:\Lập trình web\Project\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_BorrowedBookDetails.cshtml.g.cs
+F:\Lập trình web\Project\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Areas\Admin\Views\Process\Index.cshtml.g.cs
+F:\Lập trình web\Project\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Areas\Admin\Views\Process\Edit.cshtml.g.cs
+F:\Lập trình web\Project\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Areas\Admin\Views\Process\Details.cshtml.g.cs
+F:\Lập trình web\Project\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Areas\Admin\Views\Process\Delete.cshtml.g.cs

@@ -34,7 +34,7 @@ using LibraryManagement.Extensions;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5c87420fe2eb2bdef8bf43ec8142af1445bf360b", @"/Areas/Admin/Views/Book/Edit.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7a03b079343b697176e720de9fa2d2a7e6e87ff5", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"41be026932054997fef355abeae0af2af577cb29", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_Book_Edit : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<LibraryManagement.Models.ViewModel.BookViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("text-danger"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);

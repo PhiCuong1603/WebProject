@@ -48,7 +48,7 @@ namespace LibraryManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DetailsPost(int id)
         {
-            List<int> lstBorrowedCart = HttpContext.Session.Get<List<int>>("ssBorrowedgCart");
+            List<int> lstBorrowedCart = HttpContext.Session.Get<List<int>>("ssBorrowedCart");
             if (lstBorrowedCart == null)
             {
 

@@ -1,0 +1,128 @@
+﻿@model LibraryManagement.Models.ViewModel.ProcessDetailsViewModel
+@using LibraryManagement.Extensions
+@using LibraryManagement.Utility
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<br />
+<h2 class="text-info"> Process Details</h2>
+
+    <div class="p-4 border rounded row">
+        <div class="col-6">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Process.ReaderName"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Process.ReaderName" disabled class="form-control" />
+                </div>
+               
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Process.ReaderEmail"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Process.ReaderEmail" disabled class="form-control" />
+                </div>
+               
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Process.BorrowedDate"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Process.BorrowedDate" id="datepicker" type="text" class="form-control" />
+                </div>
+              
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Process.BorrowedTime"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Process.BorrowedTime" id="timepicker" type="text" class="timepicker form-control" />
+                </div>
+               
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Process.ReaderPhoneNumber"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Process.ReaderPhoneNumber"  disabled class="form-control" />
+                </div>
+                
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Process.Librarian"></label>
+                </div>
+                <div class="col-8">
+                    @if (User.IsInRole(SD.AdminEndUser))
+                    {
+                        <input asp-for="@Model.Process.Librarian.Name" disabled class="form-control" />
+                        <input asp-for="@Model.Process.LibrarianID" hidden />
+
+                    }
+                    else
+                    {
+                        <select asp-for="@Model.Process.LibrarianID" disabled asp-items="Model.Librarian.ToSelectListItemString(Model.Process.LibrarianID)" class="form-control"></select>
+
+                    }
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Process.Complete"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Process.Complete" disabled class="form-control" />
+                </div>
+            </div>
+
+        </div>
+        <div class="col-6">
+
+            <partial name="~/Views/Shared/_BorrowedBookDetails.cshtml" model="Model.Books" />
+        </div>
+
+
+
+        <br />
+        <div class="form-group">
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </div>
+
+
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+            var appointmentTime = document.getElementById('datepicker').value;
+            var splitData = "";
+            if (appointmentTime.indexOf(" ") > 0) {
+                splitData = appointmentTime.split(" ");
+
+            }
+            else {
+                splitData = appointmentTime.split("T");
+
+            }
+
+            var time = splitData[1].substring(0, 5);
+            if (time.slice(-1) == ":") {
+                time = time.substring(0, time.length - 1);
+
+            }
+            var amPmTime = splitData[2];
+            $('#datepicker').attr('value', splitData[0]);
+            $('#timepicker').attr('value', time + ' ' + amPmTime);
+
+        });</script>
+    }

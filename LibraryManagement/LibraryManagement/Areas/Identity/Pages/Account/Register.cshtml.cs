@@ -18,6 +18,7 @@ using Microsoft.Extensions.Logging;
 
 namespace LibraryManagement.Areas.Identity.Pages.Account
 {
+    //[Authorize(Roles = SD.SuperAdminEndUser)]
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {

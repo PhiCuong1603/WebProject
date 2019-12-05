@@ -1,0 +1,20 @@
+﻿@model LibraryManagement.Models.ViewModel.BorrowedCartViewModels
+
+@{
+    ViewData["Title"] = "BorrowedProcess";
+}
+
+<br />
+<h2 class="text-info">Borrowed Process</h2>
+@*<div class="form-text">
+    Your Process has been submitted. One of our awesome Sales Rep would be in touch shortly. Please feel free to contact us anytime you have any questions.
+</div>*@
+<br />
+
+<partial name="~/Views/Shared/_BorrowedReaderDetails.cshtml" model="Model.Process" />
+<br />
+
+<partial name="~/Views/Shared/_BorrowedBookDetails.cshtml" model="Model.Books" />
+
+<a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-success"> Back to Products</a>
+

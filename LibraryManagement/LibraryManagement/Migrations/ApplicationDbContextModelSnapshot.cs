@@ -122,6 +122,9 @@ namespace LibraryManagement.Migrations
                     b.Property<bool>("Complete")
                         .HasColumnType("bit");
 
+                    b.Property<string>("LibrarianID")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("ReaderEmail")
                         .HasColumnType("nvarchar(max)");
 
@@ -133,6 +136,8 @@ namespace LibraryManagement.Migrations
 
                     b.HasKey("ProcessID");
 
+                    b.HasIndex("LibrarianID");
+
                     b.ToTable("Process");
                 });
 
@@ -143,10 +148,19 @@ namespace LibraryManagement.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address")
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ReaderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReaderID");
@@ -394,6 +408,13 @@ namespace LibraryManagement.Migrations
                         .HasForeignKey("ProcessID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("LibraryManagement.Models.Process", b =>
+                {
+                    b.HasOne("LibraryManagement.Models.ApplicationUser", "Librarian")
+                        .WithMany()
+                        .HasForeignKey("LibrarianID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

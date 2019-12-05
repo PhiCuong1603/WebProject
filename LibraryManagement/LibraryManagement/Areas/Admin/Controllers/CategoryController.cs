@@ -4,10 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using LibraryManagement.Data;
 using LibraryManagement.Models;
+using LibraryManagement.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryManagement.Areas.Admin.Controllers
 {
+    [Authorize(Roles = SD.SuperAdminEndUser)]
     [Area("Admin")]
     public class CategoryController : Controller
     {

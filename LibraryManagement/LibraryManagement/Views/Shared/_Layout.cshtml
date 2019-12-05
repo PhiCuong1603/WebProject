@@ -31,49 +31,34 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
+                        @if (User.IsInRole(SD.SuperAdminEndUser))
+                         {
+                            
+                            <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Book" asp-action="Index">Book</a>
-                        </li>
-                        <li class="nav-item">
+                            </li>
+                            <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Author" asp-action="Index">Author</a>
-                        </li>
-                        <li class="nav-item">
+                            </li>
+                            <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-                        </li>
-                        <li class="nav-item">
+                            </li>
+                            <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Reader" asp-action="Index">Reader</a>
-                        </li>
-                        <li class="nav-item">
+                            </li>
+                            <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">AdminUsers</a>
-                        </li>
+                            </li>
+                         }
 
-                        @*@if (User.IsInRole(SD.SuperAdminEndUser))
-        {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Merchants" asp-action="Index">Merchant</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Products" asp-action="Index">Product</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Customers" asp-action="Index">Customer</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Admin" asp-controller="StoreImport" asp-action="Index">Import</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">Admin User</a>
-            </li>
-        }
-        @if (User.IsInRole(SD.SuperAdminEndUser) || User.IsInRole(SD.AdminEndUser))
-        {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Orders" asp-action="Index">Order</a>
-            </li>
-        }*@
+
+
+                        @if (User.IsInRole(SD.SuperAdminEndUser) || User.IsInRole(SD.AdminEndUser))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Process" asp-action="Index">Process</a>
+                            </li>
+                        }
                         @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssBorrowedCart") != null)
                         {
                             <li style="color:white">

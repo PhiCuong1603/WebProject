@@ -65,19 +65,19 @@ namespace LibraryManagement.Areas.Customer.Controllers
 
             foreach(int bookID in lstCartItems)
             {
-                Borrowed productsSelectedForAppointment = new Borrowed()
+                Borrowed BooksSelectedForProcess = new Borrowed()
                 {
                     ProcessID = processID,
                     BookID = bookID
                 };
-                _db.Borrowed.Add(productsSelectedForAppointment);
+                _db.Borrowed.Add(BooksSelectedForProcess);
                 
             }
             _db.SaveChanges();
             lstCartItems = new List<int>();
             HttpContext.Session.Set("ssBorrowedCart", lstCartItems);
 
-            return RedirectToAction("AppointmentConfirmation","BorrowedCart", new { Id = processID});
+            return RedirectToAction("ProcessComplete","BorrowedCart", new { Id = processID});
 
         }
 
@@ -96,6 +96,20 @@ namespace LibraryManagement.Areas.Customer.Controllers
             HttpContext.Session.Set("ssBorrowedCart", lstCartItems);
 
             return RedirectToAction(nameof(Index));
+        }
+
+        //Get
+
+        public IActionResult ProcessComplete(int id)
+        {
+            BorrowedCartVM.Process = _db.Process.Where(a => a.ProcessID == id).FirstOrDefault();
+            List<Borrowed> objBookList = _db.Borrowed.Where(p => p.ProcessID == id).ToList();
+
+            foreach (Borrowed BrwObj in objBookList)
+            {
+                BorrowedCartVM.Books.Add(_db.Book.Include(p => p.Author).Include(p => p.Category).Where(p => p.BookID == BrwObj.BookID).FirstOrDefault());
+            }
+            return View(BorrowedCartVM);
         }
     }
 }

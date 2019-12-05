@@ -9,7 +9,7 @@
 }
 
 <br />
-<h2 class="text-info">Book Detail </h2>
+<h2 class="text-info">Book Details </h2>
 <form method="post">
     <div class="p-4 border rounded row">
         <div class="col-8">
@@ -104,7 +104,6 @@
 </form>
 
 @section Scripts{
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
         //$('.timepicker').timepicker({
         //            timeFormat: 'h:mm p',
@@ -119,7 +118,7 @@
 
         $(function () {
             $("#datepicker").datepicker({
-                /*minDate: +1, */maxDate: "+3M"
+                //minDate: +1, maxDate: "+3M"
             });
         });</script>
 }

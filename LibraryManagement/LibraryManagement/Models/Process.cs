@@ -19,18 +19,17 @@ namespace LibraryManagement.Models
         public string ReaderName { get; set; }
         public string ReaderPhoneNumber { get; set; }
         public string ReaderEmail { get; set; }
-
         public bool Complete { get; set; }
 
-      
-        //public string LibrarianID { get; set; }
+        [Display(Name = "Librarian")]
+        public string LibrarianID { get; set; }
 
-        //[ForeignKey("LibrarianID")]
-        //public virtual ApplicationUser Librarian { get; set; }
+        [ForeignKey("LibrarianID")]
+        public virtual ApplicationUser Librarian { get; set; }
 
         //[ForeignKey("Reader")]
-        //public int ReaderID { get; set; }       
+        //public int ReaderID { get; set; }
         //public ICollection<Borrowed> Borrowed { get; set; }
-       
+
     }
 }
