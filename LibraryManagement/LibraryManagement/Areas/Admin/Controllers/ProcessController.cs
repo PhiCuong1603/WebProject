@@ -121,7 +121,7 @@ namespace LibraryManagement.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var BooksList = /*(IEnumerable<Book>)*/(from b in _db.Book join a in _db.Borrowed
+            var BooksList = (IEnumerable<Book>)(from b in _db.Book join a in _db.Borrowed
                                                       on b.BookID equals a.BookID
                                                       where a.ProcessID == id  
                                                       select b).Include("Author").Include("Category");

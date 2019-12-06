@@ -42,16 +42,11 @@
                             </li>
                             <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Reader" asp-action="Index">Reader</a>
-                            </li>
+                            </li>                           
                             <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">AdminUsers</a>
                             </li>
                          }
-
-
 
                         @if (User.IsInRole(SD.SuperAdminEndUser) || User.IsInRole(SD.AdminEndUser))
                         {

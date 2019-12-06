@@ -8388,11 +8388,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Lập trình web\\Project\\LibraryManagement\\LibraryManagement\\LibraryManagement.csproj",
+      "projectUniqueName": "F:\\Lập trình web\\github\\WebProject\\LibraryManagement\\LibraryManagement\\LibraryManagement.csproj",
       "projectName": "LibraryManagement",
-      "projectPath": "F:\\Lập trình web\\Project\\LibraryManagement\\LibraryManagement\\LibraryManagement.csproj",
+      "projectPath": "F:\\Lập trình web\\github\\WebProject\\LibraryManagement\\LibraryManagement\\LibraryManagement.csproj",
       "packagesPath": "C:\\Users\\TieuCuong\\.nuget\\packages\\",
-      "outputPath": "F:\\Lập trình web\\Project\\LibraryManagement\\LibraryManagement\\obj\\",
+      "outputPath": "F:\\Lập trình web\\github\\WebProject\\LibraryManagement\\LibraryManagement\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
