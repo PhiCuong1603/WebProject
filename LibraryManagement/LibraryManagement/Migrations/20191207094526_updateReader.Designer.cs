@@ -4,14 +4,16 @@ using LibraryManagement.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LibraryManagement.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191207094526_updateReader")]
+    partial class updateReader
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,11 +124,23 @@ namespace LibraryManagement.Migrations
                     b.Property<bool>("Complete")
                         .HasColumnType("bit");
 
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
+
                     b.Property<string>("LibrarianID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("ReaderID")
+                    b.Property<string>("ReaderEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ReaderID")
                         .HasColumnType("int");
+
+                    b.Property<string>("ReaderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReaderPhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProcessID");
 
@@ -414,9 +428,7 @@ namespace LibraryManagement.Migrations
 
                     b.HasOne("LibraryManagement.Models.Reader", "Reader")
                         .WithMany()
-                        .HasForeignKey("ReaderID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ReaderID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

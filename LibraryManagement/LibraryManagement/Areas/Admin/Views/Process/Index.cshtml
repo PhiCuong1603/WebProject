@@ -76,13 +76,13 @@
                         @Html.DisplayNameFor(m => m.Processes.FirstOrDefault().BorrowedDate)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(m => m.Processes.FirstOrDefault().ReaderName)
+                        @Html.DisplayNameFor(m => m.Processes.FirstOrDefault().Reader.ReaderName)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(m => m.Processes.FirstOrDefault().ReaderPhoneNumber)
+                        @Html.DisplayNameFor(m => m.Processes.FirstOrDefault().Reader.Phone)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(m => m.Processes.FirstOrDefault().ReaderEmail)
+                        @Html.DisplayNameFor(m => m.Processes.FirstOrDefault().Reader.Email)
                     </th>
                     <th>
                         @Html.DisplayNameFor(m => m.Processes.FirstOrDefault().Complete)
@@ -102,13 +102,13 @@
                             @Html.DisplayFor(m => item.BorrowedDate)
                         </td>
                         <td>
-                            @Html.DisplayFor(m => item.ReaderName)
+                            @Html.DisplayFor(m => item.Reader.ReaderName)
                         </td>
                         <td>
-                            @Html.DisplayFor(m => item.ReaderPhoneNumber)
+                            @Html.DisplayFor(m => item.Reader.Phone)
                         </td>
                         <td>
-                            @Html.DisplayFor(m => item.ReaderEmail)
+                            @Html.DisplayFor(m => item.Reader.Email)
                         </td>
                         <td>
                             @Html.DisplayFor(m => item.Complete)

@@ -57,7 +57,15 @@ namespace LibraryManagement.Areas.Customer.Controllers
                                                             .AddHours(BorrowedCartVM.Process.BorrowedTime.Hour)
                                                             .AddMinutes(BorrowedCartVM.Process.BorrowedTime.Minute);
 
+            Reader reader = BorrowedCartVM.Process.Reader;
+            reader.Status = "Just Order";
+            _db.Reader.Add(reader);
+            _db.SaveChanges();
+
+            int ReaderID = reader.ReaderID;
+
             Process Process = BorrowedCartVM.Process;
+            reader.ReaderID = ReaderID;
             _db.Process.Add(Process);
             _db.SaveChanges();
 
@@ -102,6 +110,9 @@ namespace LibraryManagement.Areas.Customer.Controllers
 
         public IActionResult ProcessComplete(int id)
         {
+            Process process = _db.Process.Where(a => a.ProcessID == id).FirstOrDefault();
+            process.Reader = _db.Reader.Where(a => a.ReaderID == process.ReaderID).FirstOrDefault();
+
             BorrowedCartVM.Process = _db.Process.Where(a => a.ProcessID == id).FirstOrDefault();
             List<Borrowed> objBookList = _db.Borrowed.Where(p => p.ProcessID == id).ToList();
 

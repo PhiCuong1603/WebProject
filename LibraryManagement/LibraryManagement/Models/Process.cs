@@ -16,9 +16,6 @@ namespace LibraryManagement.Models
         [NotMapped]
         public DateTime BorrowedTime { get; set; }
 
-        public string ReaderName { get; set; }
-        public string ReaderPhoneNumber { get; set; }
-        public string ReaderEmail { get; set; }
         public bool Complete { get; set; }
 
         [Display(Name = "Librarian")]
@@ -27,9 +24,13 @@ namespace LibraryManagement.Models
         [ForeignKey("LibrarianID")]
         public virtual ApplicationUser Librarian { get; set; }
 
-        //[ForeignKey("Reader")]
-        //public int ReaderID { get; set; }
-        //public ICollection<Borrowed> Borrowed { get; set; }
+        
+        public int ReaderID { get; set; }
+
+        [ForeignKey("ReaderID")]
+        public virtual Reader Reader { get; set; }
+
+        public ICollection<Borrowed> Borroweds { get; set; }
 
     }
 }

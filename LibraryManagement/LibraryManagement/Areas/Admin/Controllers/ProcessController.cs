@@ -61,7 +61,7 @@ namespace LibraryManagement.Areas.Admin.Controllers
                 param.Append(searchDate);
             }
 
-            ProcessVM.Processes = _db.Process.Include(a => a.Librarian).ToList();
+            ProcessVM.Processes = _db.Process.Include(a => a.Librarian).Include(a => a.Reader).ToList();
             if (User.IsInRole(SD.AdminEndUser))
             {
                 ProcessVM.Processes = ProcessVM.Processes.Where(a => a.LibrarianID == claim.Value).ToList();
@@ -70,15 +70,15 @@ namespace LibraryManagement.Areas.Admin.Controllers
 
             if (searchName != null)
             {
-                ProcessVM.Processes = ProcessVM.Processes.Where(a => a.ReaderName.ToLower().Contains(searchName.ToLower())).ToList();
+                ProcessVM.Processes = ProcessVM.Processes.Where(a => a.Reader.ReaderName.ToLower().Contains(searchName.ToLower())).ToList();
             }
             if (searchEmail != null)
             {
-                ProcessVM.Processes = ProcessVM.Processes.Where(a => a.ReaderEmail.ToLower().Contains(searchEmail.ToLower())).ToList();
+                ProcessVM.Processes = ProcessVM.Processes.Where(a => a.Reader.Email.ToLower().Contains(searchEmail.ToLower())).ToList();
             }
             if (searchPhone != null)
             {
-                ProcessVM.Processes = ProcessVM.Processes.Where(a => a.ReaderPhoneNumber.ToLower().Contains(searchPhone.ToLower())).ToList();
+                ProcessVM.Processes = ProcessVM.Processes.Where(a => a.Reader.Phone.ToLower().Contains(searchPhone.ToLower())).ToList();
             }
             if (searchDate != null)
             {
@@ -129,7 +129,7 @@ namespace LibraryManagement.Areas.Admin.Controllers
             ProcessDetailsViewModel objProDetailsVM = new ProcessDetailsViewModel()
             {
                 Librarian = _db.ApplicationUser.ToList(),
-                Process = _db.Process.Include(a => a.Librarian).Where(a => a.ProcessID == id).FirstOrDefault(),
+                Process = _db.Process.Include(a => a.Librarian).Include(a => a.Reader).Where(a => a.ProcessID == id).FirstOrDefault(),
                 Books = BooksList.ToList()
             };
 
@@ -150,9 +150,7 @@ namespace LibraryManagement.Areas.Admin.Controllers
 
                 var ProcessFromDb = _db.Process.Where(a => a.ProcessID == objProDetailsVM.Process.ProcessID).FirstOrDefault();
 
-                ProcessFromDb.ReaderEmail = objProDetailsVM.Process.ReaderName;
-                ProcessFromDb.ReaderEmail = objProDetailsVM.Process.ReaderEmail;
-                ProcessFromDb.ReaderPhoneNumber = objProDetailsVM.Process.ReaderPhoneNumber;
+                ProcessFromDb.Reader = objProDetailsVM.Process.Reader;
                 ProcessFromDb.BorrowedDate = objProDetailsVM.Process.BorrowedDate;
                 ProcessFromDb.Complete = objProDetailsVM.Process.Complete;
                 if (User.IsInRole(SD.SuperAdminEndUser))
@@ -185,7 +183,7 @@ namespace LibraryManagement.Areas.Admin.Controllers
 
             ProcessDetailsViewModel objProDetailsVM = new ProcessDetailsViewModel()
             {
-                Process = _db.Process.Include(a => a.Librarian).Where(a => a.ProcessID == id).FirstOrDefault(),
+                Process = _db.Process.Include(a => a.Librarian).Include(a => a.Reader).Where(a => a.ProcessID == id).FirstOrDefault(),
                 Librarian = _db.ApplicationUser.ToList(),
                 Books = BooksList.ToList()
             };
@@ -211,7 +209,7 @@ namespace LibraryManagement.Areas.Admin.Controllers
 
             ProcessDetailsViewModel objProDetailsVM = new ProcessDetailsViewModel()
             {
-                Process = _db.Process.Include(a => a.Librarian).Where(a => a.ProcessID == id).FirstOrDefault(),
+                Process = _db.Process.Include(a => a.Librarian).Include(a => a.Reader).Where(a => a.ProcessID == id).FirstOrDefault(),
                 Librarian = _db.ApplicationUser.ToList(),
                 Books = BooksList.ToList()
             };
