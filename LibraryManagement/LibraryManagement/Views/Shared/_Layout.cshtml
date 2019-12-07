@@ -32,21 +32,24 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         @if (User.IsInRole(SD.SuperAdminEndUser))
-                         {
-                            
+                        {
+
                             <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Book" asp-action="Index">Book</a>
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Book" asp-action="Index">Book</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Author" asp-action="Index">Author</a>
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Author" asp-action="Index">Author</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-                            </li>                           
-                            <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">AdminUsers</a>
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
                             </li>
-                         }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Reader" asp-action="Index">Reader</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">AdminUsers</a>
+                            </li>
+                        }
 
                         @if (User.IsInRole(SD.SuperAdminEndUser) || User.IsInRole(SD.AdminEndUser))
                         {
