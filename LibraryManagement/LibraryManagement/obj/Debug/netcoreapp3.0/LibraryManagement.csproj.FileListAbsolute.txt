@@ -411,3 +411,8 @@ F:\Lập trình web\github\WebProject\LibraryManagement\LibraryManagement\obj\De
 F:\Lập trình web\github\WebProject\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\LibraryManagement.dll
 F:\Lập trình web\github\WebProject\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\LibraryManagement.pdb
 F:\Lập trình web\github\WebProject\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Views\Shared\Components\UserName\Default.cshtml.g.cs
+F:\Lập trình web\github\WebProject\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Areas\Admin\Views\Reader\Index.cshtml.g.cs
+F:\Lập trình web\github\WebProject\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Areas\Admin\Views\Reader\Create.cshtml.g.cs
+F:\Lập trình web\github\WebProject\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Areas\Admin\Views\Reader\Edit.cshtml.g.cs
+F:\Lập trình web\github\WebProject\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Areas\Admin\Views\Reader\Details.cshtml.g.cs
+F:\Lập trình web\github\WebProject\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\Razor\Areas\Admin\Views\Reader\Delete.cshtml.g.cs

@@ -1,0 +1,78 @@
+﻿@model LibraryManagement.Models.Reader
+@{
+    ViewData["Title"] = "Create";
+}
+<br />
+<h2>Create Reader</h2>
+
+
+<form method="post" asp-action="Create">
+    <div class="p-4 border rounded">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label asp-for="ReaderName" class="text-white"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ReaderName" class="form-control" />
+            </div>
+            <span asp-validation-for="ReaderName" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label asp-for="Status" class="text-white"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Status" class="form-control" />
+            </div>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label asp-for="Date" class="text-white"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Date" value="" type="text" id="datepicker" class="form-control" />
+            </div>
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label asp-for="Email" class="text-white"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label asp-for="Phone" class="text-white"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Phone" class="form-control" />
+            </div>
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+        <br />
+        <div style="text-align:center">
+            <input type="submit" class="btn btn-primary" value="Create" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <script>$(function () {
+            $("#datepicker").datepicker();
+        });</script>
+}
+
+
+
+
