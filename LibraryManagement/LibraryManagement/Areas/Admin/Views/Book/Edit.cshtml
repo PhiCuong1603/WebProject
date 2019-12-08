@@ -60,7 +60,7 @@
                     <label asp-for="Books.Note"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Books.Note" readonly class="form-control" />
+                    <input asp-for="Books.Note" class="form-control" />
                 </div>
                 <span asp-validation-for="Books.Note" class="text-danger"></span>
             </div>
@@ -102,7 +102,7 @@
 
         $(function () {
             $("#datepicker").datepicker({
-                //minDate: +1, maxDate: "+3M"
+                minDate: 0, maxDate: "+3M"
             });
         });</script>
 }

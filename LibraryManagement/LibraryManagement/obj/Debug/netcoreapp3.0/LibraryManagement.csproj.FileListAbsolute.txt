@@ -415,3 +415,4 @@ F:\Lập trình web\github\WebProject\LibraryManagement\LibraryManagement\obj\De
 F:\Lập trình web\github\WebProject\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\LibraryManagement.csproj.CopyComplete
 F:\Lập trình web\github\WebProject\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\LibraryManagement.dll
 F:\Lập trình web\github\WebProject\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\LibraryManagement.pdb
+F:\Lập trình web\github\WebProject\LibraryManagement\LibraryManagement\obj\Debug\netcoreapp3.0\LibraryManagement.csprojAssemblyReference.cache

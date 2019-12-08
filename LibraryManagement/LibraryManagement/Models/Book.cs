@@ -15,6 +15,7 @@ namespace LibraryManagement.Models
         public string BookImage { get; set; }
 
         public DateTime PublicationDate { get; set; }
+       
         public string Note { get; set; }
        
 
