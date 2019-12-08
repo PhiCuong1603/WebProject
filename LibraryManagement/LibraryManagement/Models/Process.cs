@@ -23,7 +23,6 @@ namespace LibraryManagement.Models
 
         [ForeignKey("LibrarianID")]
         public virtual ApplicationUser Librarian { get; set; }
-
         
         public int ReaderID { get; set; }
 
