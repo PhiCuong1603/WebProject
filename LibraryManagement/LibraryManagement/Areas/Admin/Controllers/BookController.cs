@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagement.Areas.Admin.Controllers
 {
-    [Authorize(Roles = SD.SuperAdminEndUser)]
+    [Authorize(Roles = SD.AdminEndUser + "," + SD.SuperAdminEndUser)]
     [Area("Admin")]
     public class BookController : Controller
     {
