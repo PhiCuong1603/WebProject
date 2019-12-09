@@ -62,7 +62,7 @@ namespace LibraryManagement.Areas.Admin.Controllers
             }
 
             ProcessVM.Processes = _db.Process.Include(a => a.Librarian).Include(a => a.Reader).ToList();
-            if (User.IsInRole(SD.AdminEndUser))
+            if (User.IsInRole(SD.AdminEndUser + "," + SD.SuperAdminEndUser))
             {
                 ProcessVM.Processes = ProcessVM.Processes.Where(a => a.LibrarianID == claim.Value).ToList();
             }

@@ -146,6 +146,8 @@ namespace LibraryManagement.Areas.Admin.Controllers
                 BookFromDb.BookName = BookVM.Books.BookName;                         
                 BookFromDb.AuthorID = BookVM.Books.AuthorID;
                 BookFromDb.CategoryID = BookVM.Books.CategoryID;
+                BookFromDb.PublicationDate = BookVM.Books.PublicationDate;
+                BookFromDb.Note = BookVM.Books.Note;
                
                 await _db.SaveChangesAsync();
 
