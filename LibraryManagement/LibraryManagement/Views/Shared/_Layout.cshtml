@@ -20,77 +20,77 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LibraryManagement</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        @if (User.IsInRole(SD.SuperAdminEndUser) || User.IsInRole(SD.AdminEndUser))
-                        {
+    @*<header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LibraryManagement</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
+                        <ul class="navbar-nav flex-grow-1">
+                            @if (User.IsInRole(SD.SuperAdminEndUser))
+                             {
 
-                            <li class="nav-item">
+                                <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Admin" asp-controller="Book" asp-action="Index">Book</a>
-                            </li>
-                            <li class="nav-item">
+                                </li>
+                                <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Admin" asp-controller="Author" asp-action="Index">Author</a>
-                            </li>
-                            <li class="nav-item">
+                                </li>
+                                <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Reader" asp-action="Index">Reader</a>
-                            </li>
-                            <li class="nav-item">
+                                </li>
+                                <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">AdminUsers</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Process" asp-action="Index">Process</a>
-                            </li>
-                        }
-                      
-                        @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssBorrowedCart") != null)
-                        {
-                            <li style="color:white">
-                                <a asp-area="Customer" asp-controller="BorrowedCart" asp-action="Index" class="nav-link">
-                                    <i class="fas fa-shopping-cart"></i> &nbsp;
-                                    @{
-                                        var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssBorrowedCart").Count;
-                                    }
-                                    (@count)
-                                </a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li style="color:white">
-                                <a asp-area="Customer" asp-controller="BorrowedCart" asp-action="Index" class="nav-link">
-                                    <i class="fas fa-shopping-cart"></i> &nbsp;
-                                    (0)
-                                </a>
-                            </li>
-                        }
-                    </ul>
+                                </li>
+                             }
+
+                            @if (User.IsInRole(SD.SuperAdminEndUser) || User.IsInRole(SD.AdminEndUser))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Process" asp-action="Index">Process</a>
+                                </li>
+                            }
+                            @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssBorrowedCart") != null)
+                            {
+                                <li style="color:white">
+                                    <a asp-area="Customer" asp-controller="BorrowedCart" asp-action="Index" class="nav-link">
+                                        <i class="fas fa-shopping-cart"></i> &nbsp;
+                                        @{
+                                            var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssBorrowedCart").Count;
+                                        }
+                                        (@count)
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li style="color:white">
+                                    <a asp-area="Customer" asp-controller="BorrowedCart" asp-action="Index" class="nav-link">
+                                        <i class="fas fa-shopping-cart"></i> &nbsp;
+                                        (0)
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>*@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - LibraryManagement - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    @*<footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2019 - LibraryManagement - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

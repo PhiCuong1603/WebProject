@@ -1,35 +1,179 @@
-﻿@model List<LibraryManagement.Models.Book>
-@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<LibraryManagement.Models.Book>
+@using Microsoft.AspNetCore.Http
+@using LibraryManagement.Extensions
+@using LibraryManagement.Utility
+@using LibraryManagement.Models.ViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@inject IHttpContextAccessor HttpContextAccessor
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/defaultt.css">
+    <link rel="stylesheet" type="text/css" href="~/css/animatebook.css">
+    <script src="~/js/modernizr.custom.js"></script>
+
+</head>
+
+@*<section class="section section--menu" id="Horatio">
+        <div style="color:aliceblue;font-size:40px;margin-top:20px;">Library Management</div>
+
+
+        <nav class="menu menu--horatio">
+            <ul class="menu__list">
+
+                <li class="menu__item menu__item--current"><a class="menu__link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="menu__item"><a class="menu__link" asp-area="Admin" asp-controller="Book" asp-action="Index">Book</a></li>
+                <li class="menu__item"><a class="menu__link" asp-area="Admin" asp-controller="Author" asp-action="Index">Author</a></li>
+                <li class="menu__item"><a class="menu__link" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a></li>
+                <li class="menu__item"><a class="menu__link" asp-area="Admin" asp-controller="Producer" asp-action="Index">Producer</a></li>
+                <li class="menu__item"> <a class="menu__link" asp-area="Admin" asp-controller="Reader" asp-action="Index">Reader</a></li>
+                <li class="menu__item"><a class="menu__link" asp-area="Admin" asp-controller="Librarian" asp-action="Index">Librarian</a></li>
+            </ul>
+        </nav>
+
+    </section>*@
+@*batdautuday*@
+@*tenweb*@
+<partial name="_LoginPartial" />
+@if (SignInManager.IsSignedIn(User))
+{
+
+
+
+}
+else
+{
+
+    @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssBorrowedCart") != null)
+    {
+        <div style="float:right;margin-top:7px">
+            <a asp-area="Customer" asp-controller="BorrowedCart" asp-action="Index" class="nav-link">
+                <i class="fas fa-shopping-cart"></i> &nbsp;
+                @{
+                    var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssBorrowedCart").Count;
+                }
+                (@count)
+            </a>
+        </div>
+
+    }
+    else
+    {
+        <div style="float:right;margin-top:7px">
+            <a asp-area="Customer" asp-controller="BorrowedCart" asp-action="Index" class="nav-link" style="color:white">
+                <i class="fas fa-shopping-cart"></i> &nbsp;
+                (0)
+            </a>
+        </div>
+
+    }
+    <section class="section section--menu" id="Horatio" style="text-align:center;">
+        <div style="color:aliceblue;font-size:40px;margin-top:30px;">Library Management</div>
+
+    </section>
+
 }
 
-<br />
-<br />
+
+@if (User.IsInRole(SD.SuperAdminEndUser) || User.IsInRole(SD.AdminEndUser))
+{
+    <section class="section section--menu" id="Horatio">
+        <div style="color:aliceblue;font-size:40px;margin-top:20px;">Library Management</div>
+        <nav class="menu menu--horatio" style="color:aliceblue">
+            <ul class="menu__list">
+
+                <li class="menu__item menu__item--current"><a class="menu__link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="menu__item"><a class="menu__link" asp-area="Admin" asp-controller="Book" asp-action="Index">Book</a></li>
+                <li class="menu__item"><a class="menu__link" asp-area="Admin" asp-controller="Author" asp-action="Index">Author</a></li>
+                <li class="menu__item"><a class="menu__link" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a></li>
+                <li class="menu__item"> <a class="menu__link" asp-area="Admin" asp-controller="Reader" asp-action="Index">Reader</a></li>
+                <li class="menu__item"><a class="menu__link" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">AdminUsers</a></li>              
+                <li class="menu__item"><a class="menu__link" asp-area="Admin" asp-controller="Process" asp-action="Index">Process</a></li>
+              
+            </ul>
+        </nav>
+
+    </section>
+
+
+}
 
 <div class="row">
     @foreach (var book in Model)
     {
-        <div class="col-4">
-            <div class="card mb-4">
-                <div class="card-header">
+        <div class="col-4" style="background-color:transparent;border-color:transparent">
+            <div class="card mb-2" style="background-color:transparent;border-color:transparent">
 
+
+
+                @*<img class="card-img-top" style="height:100%;" src="@book.BookImage" alt="Book Image" />
                     <h4 class="my-0 font-weight-normal">
-                        <label style="font-size:23px;color:steelblue; border:1px thin gray ">@book.BookName</label>
+                        <label style="font-size:20px;color:black;padding-top:3px;padding-left:4px"> <b> @book.BookName</b></label>
                     </h4>
-                </div>
-                <img class="card-img-top" style="height:500px; border:1px thin gray; " src="@book.BookImage" alt="Card Image" />
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        @*<div class="btn-group">
-                            <label style="font-size:20px; color:#a51313"> @book.Author.AuthorName </label>
-                        </div>*@
-                        <a asp-action="Details" asp-controller="Home" class="btn btn-success pull-right btn-outline-info" asp-route-id="@book.BookID"> View Details</a>
+                    <div style="text-align:center;color:black;font-size:23px;margin-top:4px;">
+                        <b> @book.BookName</b>
                     </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <a asp-action="" asp-controller="" class="btn" asp-route-id=""></a>
+                            <a asp-action="Detail" asp-controller="Home" class="btn btn-outline-success float-lg-right" asp-route-id="@book.BookID">View Detail</a>
+
+                        </div>
+
+                    </div>*@
+                <div class="component" style="margin-left:10px">
+
+                    <ul class="align">
+                        <li>
+                            <div style="zoom:150%;align-content:center">
+                                <figure class='book'>
+
+                                    <!-- Front -->
+
+                                    <ul class='hardcover_front'>
+                                        <li>
+                                            <img src="@book.BookImage" alt="" width="100%" height="100%">
+                                        </li>
+                                        <li></li>
+                                    </ul>
+
+                                    <!-- Pages -->
+
+                                    <ul class='page'>
+                                        <li></li>
+                                        <li>
+
+                                            <a asp-action="Details" asp-controller="Home" class="btn btn-outline-success" asp-route-id="@book.BookID">View Detail</a>
+                                        </li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <!-- Back -->
+
+                                    <ul class='hardcover_back'>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+                                    <ul class='book_spine'>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                </figure>
+                            </div>
+                        </li>
+
+                        <div style="text-align:center;color:aliceblue;font-size:25px;margin-left:25px">
+                            <b> @book.BookName</b>
+                        </div>
+                    </ul>
                 </div>
 
             </div>
         </div>
-
     }
 </div>
-
