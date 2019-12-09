@@ -12,8 +12,7 @@ namespace LibraryManagement.Models
     {
         [Display(Name = "Person")]
         public string Name { get; set; }
-
-        [NotMapped]
+      
         public bool IsSuperAdmin { get; set; }
     }
 }

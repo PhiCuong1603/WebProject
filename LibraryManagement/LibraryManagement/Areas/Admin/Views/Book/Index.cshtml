@@ -89,7 +89,7 @@
                         <div class="cell" data-title="@Html.DisplayNameFor(m => m.BookName)">@Html.DisplayFor(m => item.BookName)</div>
                         <div class="cell" data-title=" @Html.DisplayNameFor(m => m.Author)">@Html.DisplayFor(m => item.Author.AuthorName)</div>
                         <div class="cell" data-title="@Html.DisplayNameFor(m => m.Category)">@Html.DisplayFor(m => item.Category.CategoryName)</div>
-                        <div class="cell" data-title=" @Html.DisplayNameFor(m => m.PublicationDate)">@item.PublicationDate.ToString("dd,MM,yyyy")</div>
+                        <div class="cell" data-title=" @Html.DisplayNameFor(m => m.PublicationDate)">@item.PublicationDate.ToString("dd/MM/yyyy")</div>
                         <div class="cell" data-title=" @Html.DisplayNameFor(m => m.Note)">@Html.DisplayFor(m => item.Note)</div>
                         <div class="cell" data-title="  @Html.DisplayNameFor(m => m.BookImage)"> <img src="@item.BookImage" width=70% /></div>
                         <div class="cell" data-title="   Manipulation"> <partial name="_TableButtonPartial" model="item.BookID" /></div>
