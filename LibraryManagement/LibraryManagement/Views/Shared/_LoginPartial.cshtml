@@ -2,15 +2,19 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-
 @if (SignInManager.IsSignedIn(User))
 {
 
-    <a style="color:white;float:right;font-size:20px;margin-top:10px" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@await Component.InvokeAsync("UserName")</a>
-    @*<a style="color:white;float:right;font-size:20px;margin-top:10px" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)!</a>*@
+    <a style="color:white;float:right;margin-right:-70px;font-size:20px;margin-top:10px" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@await Component.InvokeAsync("UserName")</a>
+
+
+
     <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-        <button style="float:right;font-size:20px;font-size:15px;margin-top:10px" stype="button" class="btn btn-outline-dark">Logout</button>
+        <button style="float:right;margin-right:-250px;font-size:20px;font-size:15px;margin-top:10px" stype="button" class="btn btn-outline-dark">Logout</button>
     </form>
+    <br />
+    <br />
+
 
 }
 else
@@ -19,8 +23,7 @@ else
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
         </li>*@
 
-    <a style="color:white;float:right;font-size:20px;margin-top:10px" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    <a style="color:white;float:right;margin-right:-90px;font-size:20px;margin-top:10px" asp-area="Identity" asp-page="/Account/Login">Login</a>
 
 }
-
 

@@ -35,51 +35,54 @@
     </section>*@
 @*batdautuday*@
 @*tenweb*@
-<partial name="_LoginPartial" />
-@if (SignInManager.IsSignedIn(User))
-{
+<div class="container-fluid">
+    <partial name="_LoginPartial" />
 
 
-
-}
-else
-{
-
-    @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssBorrowedCart") != null)
+    @if (SignInManager.IsSignedIn(User))
     {
-        <div style="float:right;margin-top:7px">
-            <a asp-area="Customer" asp-controller="BorrowedCart" asp-action="Index" class="nav-link">
-                <i class="fas fa-shopping-cart"></i> &nbsp;
-                @{
-                    var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssBorrowedCart").Count;
-                }
-                (@count)
-            </a>
-        </div>
+
+
 
     }
     else
     {
-        <div style="float:right;margin-top:7px">
-            <a asp-area="Customer" asp-controller="BorrowedCart" asp-action="Index" class="nav-link" style="color:white">
-                <i class="fas fa-shopping-cart"></i> &nbsp;
-                (0)
-            </a>
-        </div>
+
+        @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssBorrowedCart") != null)
+        {
+            <div style="float:right;margin-top:7px">
+                <a asp-area="Customer" asp-controller="BorrowedCart" asp-action="Index" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i> &nbsp;
+                    @{
+                        var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssBorrowedCart").Count;
+                    }
+                    (@count)
+                </a>
+            </div>
+
+        }
+        else
+        {
+            <div style="float:right;margin-top:7px">
+                <a asp-area="Customer" asp-controller="BorrowedCart" asp-action="Index" class="nav-link" style="color:white">
+                    <i class="fas fa-shopping-cart"></i> &nbsp;
+                    (0)
+                </a>
+            </div>
+
+        }
+        <section class="section section--menu" id="Horatio" style="text-align:center;">
+          
+
+        </section>
 
     }
-    <section class="section section--menu" id="Horatio" style="text-align:center;">
-        <div style="color:aliceblue;font-size:40px;margin-top:30px;">Library Management</div>
-
-    </section>
-
-}
-
-
+</div>
+<div style="color:aliceblue;font-size:40px;text-align:center">Library Management</div>
 @if (User.IsInRole(SD.SuperAdminEndUser) || User.IsInRole(SD.AdminEndUser))
 {
     <section class="section section--menu" id="Horatio">
-        <div style="color:aliceblue;font-size:40px;margin-top:20px;">Library Management</div>
+
         <nav class="menu menu--horatio" style="color:aliceblue">
             <ul class="menu__list">
 
@@ -88,9 +91,9 @@ else
                 <li class="menu__item"><a class="menu__link" asp-area="Admin" asp-controller="Author" asp-action="Index">Author</a></li>
                 <li class="menu__item"><a class="menu__link" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a></li>
                 <li class="menu__item"> <a class="menu__link" asp-area="Admin" asp-controller="Reader" asp-action="Index">Reader</a></li>
-                <li class="menu__item"><a class="menu__link" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">AdminUsers</a></li>              
+                <li class="menu__item"><a class="menu__link" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">Accounts</a></li>
                 <li class="menu__item"><a class="menu__link" asp-area="Admin" asp-controller="Process" asp-action="Index">Process</a></li>
-              
+
             </ul>
         </nav>
 
